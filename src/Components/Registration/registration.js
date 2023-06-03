@@ -1,10 +1,14 @@
 import React from "react";
 import "./registration.css"
-import { BiCheckbox } from "react-icons/bi"
+import { BiCheckbox } from "react-icons/bi";
+import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
+import { useEffect, useState } from 'react';
 import logo from "./logo.png";
 
 
 const Registration = () => {
+
+    const [hidden, setHidden] = useState(true)
     return (
         <div style={{ display: "flex", justifyContent: "center", marginTop: 70 }}>
             <div className="cover">
@@ -16,7 +20,15 @@ const Registration = () => {
                 </div>
                 <div style={{ marginLeft: 30 }}>
                     <p style={{ color: '#1E2553', marginTop: 20, fontSize: 18, fontWeight: "bold" }}>Password</p>
-                    <input className='user-input' type='text' placeholder='Enter your Password' />
+                    <div style={{display: "flex", justifyContent: 'center', alignItems: 'center'}}>
+                        <input className='user-input' type='text' placeholder='Enter your Password' />
+                        <div className='icon-container'>
+                            {hidden ?
+                                <BsEyeFill size={28} color='#2B2B2B' style={{ cursor: 'pointer' }} onClick={() => setHidden(false)} /> :
+                                <BsEyeSlashFill size={28} color='#2B2B2B' style={{ cursor: 'pointer' }} onClick={() => setHidden(true)} />
+                            }
+                        </div>
+                    </div>
                 </div>
                 <div style={{ display: "flex", marginTop: 10, marginLeft: 30 }}>
                     <BiCheckbox size={28} style={{ cursor: "pointer" }} />

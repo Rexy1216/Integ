@@ -1,0 +1,36 @@
+.signcnt {
+    background-color: white;
+    box-shadow: inset 0px 0px 3px 1px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    width: 600px;
+    height: 600px;
+    padding: 20px;
+
+}
+
+.user-input {
+    margin-top: 10px;
+    border-width: 0px;
+    border: 1px solid;
+    outline-style: none;
+    border-radius: 7px;
+    font-size: 17px;
+    width: 500px;
+    height: 45px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.login-button {
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.5);
+    margin-top: 30px;
+    background-color: #4974E9;
+    width: 500px;
+    height: 45px;
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 30px;
+}
