@@ -1,67 +1,170 @@
 import React from "react";
-import "./registration.css"
+import "./registration.css";
 import { BiCheckbox } from "react-icons/bi";
-import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
-import { useEffect, useState } from 'react';
+import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
+import { useEffect, useState } from "react";
 import logo from "./logo.png";
-
+import { useNavigate } from "react-router-dom";
+import Signup from "../SignUp/sign";
 
 const Registration = () => {
+  const [hidden, setHidden] = useState(true);
 
-    const [hidden, setHidden] = useState(true)
-    return (
-        <div style={{ display: "flex", justifyContent: "center", marginTop: 70 }}>
-            <div className="cover">
-                <p style={{ fontSize: 25, fontWeight: "bold", marginTop: 40, color: '#1E2553', display: "flex", justifyContent: "center", alignItems: "center" }}>WELCOME!</p>
-                <p style={{ color: '#B4B8C3', fontSize: 18, marginLeft: 30 }}>Log in your account</p>
-                <div style={{ marginLeft: 30 }}>
-                    <p style={{ color: '#1E2553', marginTop: 20, fontSize: 18, fontWeight: "bold" }}>Your Username</p>
-                    <input className='user-input' type='text' placeholder='Enter your Username' />
-                </div>
-                <div style={{ marginLeft: 30 }}>
-                    <p style={{ color: '#1E2553', marginTop: 20, fontSize: 18, fontWeight: "bold" }}>Password</p>
-                    <div style={{display: "flex", justifyContent: 'center', alignItems: 'center'}}>
-                        <input className='user-input' type='text' placeholder='Enter your Password' />
-                        <div className='icon-container'>
-                            {hidden ?
-                                <BsEyeFill size={28} color='#2B2B2B' style={{ cursor: 'pointer' }} onClick={() => setHidden(false)} /> :
-                                <BsEyeSlashFill size={28} color='#2B2B2B' style={{ cursor: 'pointer' }} onClick={() => setHidden(true)} />
-                            }
-                        </div>
-                    </div>
-                </div>
-                <div style={{ display: "flex", marginTop: 10, marginLeft: 30 }}>
-                    <BiCheckbox size={28} style={{ cursor: "pointer" }} />
-                    <p style={{ fontSize: 18, fontWeight: "bold", marginTop: 3, color: '#1E2553' }}>Remember Me</p>
-                    <p style={{ marginLeft: 220, fontSize: 18, color: '#B4B8C3', marginTop: 3, cursor: "pointer" }}>Forgot Password?</p>
-                </div>
-                <div className='login-button'>
-                    <p style={{ fontSize: 15, fontWeight: "bold", color: 'white' }} >Log in</p>
-                </div>
-                <div style={{ display: "flex", justifyContent: "space-between" }}>
-                    <div className="line">
-                        <hr />
-                    </div>
-                    <p style={{ marginTop: 10, color: '#B4B8C3' }}>or</p>
-                    <div className="line">
-                        <hr />
-                    </div>
-                </div>
-                <div style={{ display: "flex", justifyContent: "space-between", cursor: "pointer" }}>
-                    <div className="social">
-                        <p>Continue with Google</p>
-                    </div>
-                    <div className="social">
-                        <p>Continue with Facebook</p>
-                    </div>
-                </div>
-                <div style={{ display: "flex", marginTop: 35, justifyContent: "center" }}>
-                    <p style={{ fontSize: 18, marginRight: 5 }}>Dont have any account?</p>
-                    <p style={{ color: '#2967FF', fontSize: 18, cursor: "pointer" }}>Sign Up</p>
-                </div>
+  const navigate = useNavigate();
+  function handleClickSignUp() {
+    navigate("/signup");
+  }
+
+  return (
+    <div className="main-container">
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <div className="cover">
+          <p
+            style={{
+              fontSize: 25,
+              fontWeight: "bold",
+              marginTop: 40,
+              color: "#1E2553",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            WELCOME!
+          </p>
+          <p style={{ color: "#B4B8C3", fontSize: 17, marginLeft: 30 }}>
+            Log in your account
+          </p>
+          <div style={{ marginLeft: 30 }}>
+            <p
+              style={{
+                color: "#1E2553",
+                marginTop: 20,
+                fontSize: 18,
+                fontWeight: "bold",
+              }}
+            >
+              Your Username
+            </p>
+            <input
+              className="user-input"
+              type="text"
+              placeholder="Enter your Username"
+            />
+          </div>
+          <div style={{ marginLeft: 30 }}>
+            <p
+              style={{
+                color: "#1E2553",
+                marginTop: 20,
+                fontSize: 18,
+                fontWeight: "bold",
+              }}
+            >
+              Password
+            </p>
+            <div className="user-input">
+              <input
+                className="user-inputs"
+                type={hidden ? "password" : "text"}
+                placeholder="Enter your Password"
+              />
+              <div className="icon-container">
+                <BsEyeFill
+                  size={28}
+                  color="#2B2B2B"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => setHidden(!hidden)}
+                />
+              </div>
             </div>
-
+          </div>
+          <div style={{ display: "flex", marginTop: 10, marginLeft: 30 }}>
+            <BiCheckbox size={28} style={{ cursor: "pointer" }} />
+            <p
+              style={{
+                fontSize: 18,
+                fontWeight: "bold",
+                marginTop: 3,
+                color: "#1E2553",
+              }}
+            >
+              Remember Me
+            </p>
+            <p
+              style={{
+                marginLeft: 220,
+                fontSize: 17,
+                color: "#B4B8C3",
+                marginTop: 3,
+                cursor: "pointer",
+              }}
+            >
+              Forgot Password?
+            </p>
+          </div>
+          <div className="login-button">
+            <p style={{ fontSize: 15, fontWeight: "bold", color: "white" }}>
+              Log in
+            </p>
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div className="line">
+              <hr />
+            </div>
+            <p style={{ marginTop: 10, color: "#B4B8C3" }}>or</p>
+            <div className="line">
+              <hr />
+            </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              cursor: "pointer",
+            }}
+          >
+            <div className="social">
+              <div>
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+                  alt="Logo"
+                  className="g-logo"
+                />
+              </div>
+              <div>
+                <p>Continue with Google</p>
+              </div>
+            </div>
+            <div className="social">
+              <div>
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg"
+                  alt="Logo"
+                  className="f-logo"
+                />
+              </div>
+              <div>
+                <p>Continue with Facebook</p>
+              </div>
+            </div>
+          </div>
+          <div
+            style={{ display: "flex", marginTop: 35, justifyContent: "center" }}
+          >
+            <p style={{ fontSize: 15, marginRight: 5 }}>
+              Dont have any account?
+            </p>
+            <p
+              style={{ color: "#2967FF", fontSize: 15, cursor: "pointer" }}
+              onClick={handleClickSignUp}
+            >
+              Sign Up
+            </p>
+          </div>
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 export default Registration;
