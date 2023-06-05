@@ -137,7 +137,7 @@ const Registration = () => {
             </p>
           </div>
           <div className="login-button">
-            <p style={{ fontSize: 15, fontWeight: "bold", color: "white" }}>
+            <p style={{ fontSize: 17, fontWeight: "bold", color: "white" }}>
               Log in
             </p>
           </div>
@@ -145,7 +145,7 @@ const Registration = () => {
             <div className="line">
               <hr />
             </div>
-            <p style={{ marginTop: 10, color: "#B4B8C3" }}>or</p>
+            <p style={{ fontSize: 17, marginTop: 10, color: "#B4B8C3" }}>or</p>
             <div className="line">
               <hr />
             </div>
@@ -185,11 +185,11 @@ const Registration = () => {
           <div
             style={{ display: "flex", marginTop: 35, justifyContent: "center" }}
           >
-            <p style={{ fontSize: 15, marginRight: 5 }}>
+            <p style={{ fontSize: 17, marginRight: 5 }}>
               Dont have any account?
             </p>
             <p
-              style={{ color: "#2967FF", fontSize: 15, cursor: "pointer" }}
+              style={{ color: "#2967FF", fontSize: 17, cursor: "pointer" }}
               onClick={handleClickSignUp}
             >
               Sign Up
