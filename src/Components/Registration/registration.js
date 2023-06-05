@@ -1,6 +1,6 @@
 import React from "react";
 import "./registration.css";
-import { BiCheckbox } from "react-icons/bi";
+import { BiCheckbox, BiCheckSquare } from "react-icons/bi";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import logo from "./logo.png";
@@ -9,6 +9,7 @@ import Signup from "../SignUp/sign";
 
 const Registration = () => {
   const [hidden, setHidden] = useState(true);
+  const [check, setCheck] = useState(true);
 
   const navigate = useNavigate();
   function handleClickSignUp() {
@@ -70,27 +71,60 @@ const Registration = () => {
                 placeholder="Enter your Password"
               />
               <div className="icon-container">
-                <BsEyeFill
-                  size={28}
-                  color="#2B2B2B"
-                  style={{ cursor: "pointer" }}
-                  onClick={() => setHidden(!hidden)}
-                />
+                {hidden ? (
+                  <BsEyeFill
+                    size={28}
+                    color="#2B2B2B"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => setHidden(!hidden)}
+                  />
+                ) : (
+                  <BsEyeSlashFill
+                    size={28}
+                    color="#2B2B2B"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => setHidden(!hidden)}
+                  />
+                )}
               </div>
             </div>
           </div>
           <div style={{ display: "flex", marginTop: 10, marginLeft: 30 }}>
-            <BiCheckbox size={28} style={{ cursor: "pointer" }} />
-            <p
+            <div
               style={{
-                fontSize: 18,
-                fontWeight: "bold",
-                marginTop: 3,
-                color: "#1E2553",
+                display: "flex",
+                flexDirection: "row",
+                cursor: "pointer",
               }}
+              onClick={() => setCheck(!check)}
             >
-              Remember Me
-            </p>
+              {check ? (
+                <BiCheckbox
+                  size={28}
+                  color="#2B2B2B"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => setCheck(!check)}
+                />
+              ) : (
+                <BiCheckSquare
+                  size={28}
+                  color="#2B2B2B"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => setCheck(!check)}
+                />
+              )}
+              <p
+                style={{
+                  fontSize: 18,
+                  fontWeight: "bold",
+                  marginTop: 3,
+                  color: "#1E2553",
+                }}
+              >
+                Remember Me
+              </p>
+            </div>
+
             <p
               style={{
                 marginLeft: 220,
