@@ -1,11 +1,10 @@
 import React from "react";
 import "./registration.css";
 import { BiCheckbox, BiCheckSquare } from "react-icons/bi";
-import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import logo from "./logo.png";
 import { useNavigate } from "react-router-dom";
-import Signup from "../SignUp/sign";
 
 const Registration = () => {
   const [hidden, setHidden] = useState(true);
@@ -72,14 +71,14 @@ const Registration = () => {
               />
               <div className="icon-container">
                 {hidden ? (
-                  <BsEyeFill
+                  <BsEye
                     size={28}
                     color="#2B2B2B"
                     style={{ cursor: "pointer" }}
                     onClick={() => setHidden(!hidden)}
                   />
                 ) : (
-                  <BsEyeSlashFill
+                  <BsEyeSlash
                     size={28}
                     color="#2B2B2B"
                     style={{ cursor: "pointer" }}
