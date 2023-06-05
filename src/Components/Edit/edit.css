@@ -22,3 +22,26 @@
     height: 600px;
     padding: 20px;
 }
+
+.user-input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+    border-width: 0px;
+    border: 1px solid;
+    border-radius: 7px;
+    font-size: 17px;
+    width: 500px;
+    height: 45px;
+    background-color: white;
+}
+
+.user-inputs {
+    border-width: 0px;
+    outline-style: none;
+    border-radius: 7px;
+    font-size: 17px;
+    width: 500px;
+    background-color: transparent;
+}

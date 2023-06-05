@@ -11,8 +11,13 @@ const Registration = () => {
   const [check, setCheck] = useState(true);
 
   const navigate = useNavigate();
+
   function handleClickSignUp() {
     navigate("/signup");
+  }
+
+  function handleClickLogin() {
+    navigate("/profile");
   }
 
   return (
@@ -136,7 +141,7 @@ const Registration = () => {
               Forgot Password?
             </p>
           </div>
-          <div className="login-button">
+          <div className="login-button" onClick={handleClickLogin}>
             <p style={{ fontSize: 17, fontWeight: "bold", color: "white" }}>
               Log in
             </p>

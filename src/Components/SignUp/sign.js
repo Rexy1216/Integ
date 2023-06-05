@@ -1,7 +1,13 @@
 import React from "react";
 import "./sign.css";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
+
+  function handleClickLogin() {
+    navigate("/profile");
+  }
   return (
     <div className="main-container">
       <div style={{ display: "flex", justifyContent: "center" }}>
@@ -49,8 +55,8 @@ const Signup = () => {
               placeholder="Enter your Password"
             />
           </div>
-          <div className="login-button">
-            <p style={{ fontSize: 15, fontWeight: "bold", color: "white" }}>
+          <div className="login-button" onClick={handleClickLogin}>
+            <p style={{ fontSize: 17, fontWeight: "bold", color: "white" }}>
               Log in
             </p>
           </div>
