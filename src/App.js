@@ -5,6 +5,8 @@ import Signup from './Components/SignUp/sign';
 import Profile from './Components/Profile/profile';
 import EditProfile from './Components/Edit/Edit';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const NotPage = () => {
@@ -21,15 +23,16 @@ const NotPage = () => {
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
+      <ToastContainer />
       <Routes>
-      <Route path="*" element={<NotPage />} />
+        <Route path="*" element={<NotPage />} />
         <Route path="/" element={<Registration />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/edit-profile" element={<EditProfile />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 

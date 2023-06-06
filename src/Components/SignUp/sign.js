@@ -4,6 +4,8 @@ import "./sign.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
+import { notify } from "../globalfunction";
+import { ToastContainer, toast } from "react-toastify";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -16,15 +18,22 @@ const Signup = () => {
 
   function handleClickLogin() {
     if (user && pass && confirm && pass === confirm) {
-      axios.post('https://812f-45-202-31-98.ap.ngrok.io/' + 'api/2/register', {
+      axios.post('http://localhost:8000/' + 'api/2/register', {
         username: user,
         password: confirm
       })
         .then((response) => {
-          console.log(response.data.message)
+          if (response.status === 201) {
+            notify(response.data.message, 'success')
+            navigate(-1);
+          }
+          else {
+            console.log(response.data.message)
+            notify(response.data.message, 'warning')
+          }
         })
     }
-    navigate(-1);
+
   }
   return (
     <div className="main-container">

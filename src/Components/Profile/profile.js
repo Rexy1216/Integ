@@ -7,13 +7,13 @@ import Delete from "../deleteprofile/delele";
 import axios from "axios";
 
 
-const Profile = () => {
+const Profile = ({ route }) => {
   const navigate = useNavigate();
-  const { id } = useLocation()
+  const { state } = useLocation()
   const [uname, setUname] = useState('')
 
   useEffect(() => {
-    axios.get('' + `api/2/user/${id}`)
+    axios.get('http://localhost:8000/' + `api/2/user/${state.id}`)
       .then((response) => {
         setUname(response.data.username)
       })
@@ -33,9 +33,9 @@ const Profile = () => {
 
   const handleOpenModal = () => {
     // setIsModalVisible(true);
-    axios.delete('' + 'api/2/delete', {
+    axios.delete('http://localhost:8000/' + 'api/2/delete', {
       data: {
-        id: id
+        id: state.id
       }
     })
       .then((response) => {
@@ -70,12 +70,12 @@ const Profile = () => {
                 fontSize: 20,
               }}
             >
-              {`Hello, ${uname}`}
+              {`Hello`}
             </p>
           </div>
         </div>
         <div className="md">
-          <p style={{ fontSize: 25, fontWeight: "bold" }}>UserName12345</p>
+          <p style={{ fontSize: 25, fontWeight: "bold" }}>{uname}</p>
           <div className="linee" />
         </div>
         <div style={{ display: "flex", justifyContent: "center", marginTop: 30 }}>

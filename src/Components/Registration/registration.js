@@ -5,8 +5,9 @@ import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { notify } from "../globalfunction";
 
-const Registration = ({ navigation }) => {
+const Registration = ({ navigation, route }) => {
   const [hidden, setHidden] = useState(true);
   const [check, setCheck] = useState(true);
 
@@ -21,15 +22,17 @@ const Registration = ({ navigation }) => {
   }
 
   function handleClickLogin() {
-    axios.post('' + 'api/2/login', {
+    axios.post('http://localhost:8000/' + 'api/2/login', {
       username: user,
       password: pass
     })
       .then((response) => {
-        console.log(response.data.message)
         if (response.data.flag === 1) {
-          navigate("/profile", { id: response.data.id });
-
+          notify(response.data.message, 'success')
+          navigate("/profile", { state: { id: response.data.id } });
+        }
+        else {
+          notify(response.data.message, 'warning')
         }
       })
   }
