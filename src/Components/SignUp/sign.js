@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./sign.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -10,13 +11,18 @@ const Signup = () => {
   const [user, setUser] = useState('')
   const [pass, setPass] = useState('')
   const [confirm, setConfirm] = useState('')
+  const [hidden, setHidden] = useState(true);
+  const [eyeHidden, setEyeHidden] = useState(true);
 
-  function handleClickLogin() { 
+  function handleClickLogin() {
     if (user && pass && confirm && pass === confirm) {
-      axios.post('' + 'api/2/regsiter', {
+      axios.post('https://812f-45-202-31-98.ap.ngrok.io/' + 'api/2/register', {
         username: user,
         password: confirm
       })
+        .then((response) => {
+          console.log(response.data.message)
+        })
     }
     navigate(-1);
   }
@@ -53,25 +59,64 @@ const Signup = () => {
             <p style={{ color: "#1E2553", fontSize: 18, fontWeight: "bold" }}>
               Password
             </p>
-            <input
-              className="user-input"
-              type="text"
-              placeholder="Enter your Password"
-              value={pass}
-              onChange={(e) => setPass(e.target.value)}
-            />
+
+            <div className="user-input">
+              <input
+                className="user-inputs"
+                type={eyeHidden ? "password" : "text"}
+                placeholder="Enter your Password"
+                value={pass}
+                onChange={(e) => setPass(e.target.value)}
+              />
+              <div className="icon-container">
+                {eyeHidden ? (
+                  <BsEye
+                    size={28}
+                    color="#2B2B2B"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => setEyeHidden(!eyeHidden)}
+                  />
+                ) : (
+                  <BsEyeSlash
+                    size={28}
+                    color="#2B2B2B"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => setEyeHidden(!eyeHidden)}
+                  />
+                )}
+              </div>
+            </div>
           </div>
           <div style={{ marginLeft: 30, marginTop: 20 }}>
             <p style={{ color: "#1E2553", fontSize: 18, fontWeight: "bold" }}>
               Confirm Password
             </p>
-            <input
-              className="user-input"
-              type="text"
-              placeholder="Enter your Password"
-              value={confirm}
-              onChange={(e) => setConfirm(e.target.value)}
-            />
+            <div className="user-input">
+              <input
+                className="user-inputs"
+                type={hidden ? "password" : "text"}
+                placeholder="Confirm your Password"
+                value={confirm}
+                onChange={(e) => setConfirm(e.target.value)}
+              />
+              <div className="icon-container">
+                {hidden ? (
+                  <BsEye
+                    size={28}
+                    color="#2B2B2B"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => setHidden(!hidden)}
+                  />
+                ) : (
+                  <BsEyeSlash
+                    size={28}
+                    color="#2B2B2B"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => setHidden(!hidden)}
+                  />
+                )}
+              </div>
+            </div>
           </div>
           <div className="login-button" onClick={handleClickLogin}>
             <p style={{ fontSize: 17, fontWeight: "bold", color: "white" }}>
