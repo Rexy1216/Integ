@@ -3,12 +3,16 @@ import "./registration.css";
 import { BiCheckbox, BiCheckSquare } from "react-icons/bi";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useEffect, useState } from "react";
-import logo from "./logo.png";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const Registration = () => {
+const Registration = ({ navigation }) => {
   const [hidden, setHidden] = useState(true);
   const [check, setCheck] = useState(true);
+
+
+  const [user, setUser] = useState('')
+  const [pass, setPass] = useState('')
 
   const navigate = useNavigate();
 
@@ -17,7 +21,17 @@ const Registration = () => {
   }
 
   function handleClickLogin() {
-    navigate("/profile");
+    axios.post('' + 'api/2/login', {
+      username: user,
+      password: pass
+    })
+      .then((response) => {
+        console.log(response.data.message)
+        if (response.data.flag === 1) {
+          navigate("/profile", { id: response.data.id });
+
+        }
+      })
   }
 
   return (
@@ -55,6 +69,8 @@ const Registration = () => {
               className="user-input"
               type="text"
               placeholder="Enter your Username"
+              value={user}
+              onChange={(e) => setUser(e.target.value)}
             />
           </div>
           <div style={{ marginLeft: 30 }}>
@@ -73,6 +89,8 @@ const Registration = () => {
                 className="user-inputs"
                 type={hidden ? "password" : "text"}
                 placeholder="Enter your Password"
+                value={pass}
+                onChange={(e) => setPass(e.target.value)}
               />
               <div className="icon-container">
                 {hidden ? (

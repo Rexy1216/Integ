@@ -1,12 +1,24 @@
 import React from "react";
+import { useState } from "react";
 import "./sign.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Signup = () => {
   const navigate = useNavigate();
 
-  function handleClickLogin() {
-    navigate("/profile");
+  const [user, setUser] = useState('')
+  const [pass, setPass] = useState('')
+  const [confirm, setConfirm] = useState('')
+
+  function handleClickLogin() { 
+    if (user && pass && confirm && pass === confirm) {
+      axios.post('' + 'api/2/regsiter', {
+        username: user,
+        password: confirm
+      })
+    }
+    navigate(-1);
   }
   return (
     <div className="main-container">
@@ -33,6 +45,8 @@ const Signup = () => {
               className="user-input"
               type="text"
               placeholder="Enter your Username"
+              value={user}
+              onChange={(e) => setUser(e.target.value)}
             />
           </div>
           <div style={{ marginLeft: 30, marginTop: 20 }}>
@@ -43,6 +57,8 @@ const Signup = () => {
               className="user-input"
               type="text"
               placeholder="Enter your Password"
+              value={pass}
+              onChange={(e) => setPass(e.target.value)}
             />
           </div>
           <div style={{ marginLeft: 30, marginTop: 20 }}>
@@ -53,11 +69,13 @@ const Signup = () => {
               className="user-input"
               type="text"
               placeholder="Enter your Password"
+              value={confirm}
+              onChange={(e) => setConfirm(e.target.value)}
             />
           </div>
           <div className="login-button" onClick={handleClickLogin}>
             <p style={{ fontSize: 17, fontWeight: "bold", color: "white" }}>
-              Log in
+              Sign up
             </p>
           </div>
         </div>

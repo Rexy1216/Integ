@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./profile.css";
 import { BsChevronLeft } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Delete from "../deleteprofile/delele";
+import axios from "axios";
+
 
 const Profile = () => {
   const navigate = useNavigate();
+  const { id } = useLocation()
+  const [uname, setUname] = useState('')
+
+  useEffect(() => {
+    axios.get('' + `api/2/user/${id}`)
+      .then((response) => {
+        setUname(response.data.username)
+      })
+  }, [])
+
+
 
   function handleClickBack() {
     navigate(-1);
@@ -19,12 +32,20 @@ const Profile = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleOpenModal = () => {
-    setIsModalVisible(true);
+    // setIsModalVisible(true);
+    axios.delete('' + 'api/2/delete', {
+      data: {
+        id: id
+      }
+    })
+      .then((response) => {
+        navigate('/')
+      })
   };
 
   return (
     <>
-      {isModalVisible && <Delete setAddItem={setIsModalVisible} />}
+      {/* {isModalVisible && <Delete setAddItem={setIsModalVisible}/>} */}
 
       <div>
         <div className="top">
@@ -49,7 +70,7 @@ const Profile = () => {
                 fontSize: 20,
               }}
             >
-              HELLO
+              {`Hello, ${uname}`}
             </p>
           </div>
         </div>
