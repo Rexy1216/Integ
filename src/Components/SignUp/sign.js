@@ -77,23 +77,6 @@ const Signup = () => {
                 value={pass}
                 onChange={(e) => setPass(e.target.value)}
               />
-              <div className="icon-container">
-                {eyeHidden ? (
-                  <BsEye
-                    size={28}
-                    color="#2B2B2B"
-                    style={{ cursor: "pointer" }}
-                    onClick={() => setEyeHidden(!eyeHidden)}
-                  />
-                ) : (
-                  <BsEyeSlash
-                    size={28}
-                    color="#2B2B2B"
-                    style={{ cursor: "pointer" }}
-                    onClick={() => setEyeHidden(!eyeHidden)}
-                  />
-                )}
-              </div>
             </div>
           </div>
           <div style={{ marginLeft: 30, marginTop: 20 }}>

@@ -5,18 +5,20 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Delete from "../deleteprofile/delele";
 import axios from "axios";
+import { notify } from "../globalfunction";
 
 
-const Profile = ({ route }) => {
+const Profile = () => {
   const navigate = useNavigate();
   const { state } = useLocation()
   const [uname, setUname] = useState('')
 
   useEffect(() => {
-    axios.get('http://localhost:8000/' + `api/2/user/${state.id}`)
+    axios.get('http://127.0.0.1:8000/' + `api/2/user/${state.id}`)
       .then((response) => {
         setUname(response.data.username)
       })
+    console.log(state.id)
   }, [])
 
 
@@ -26,19 +28,20 @@ const Profile = ({ route }) => {
   }
 
   function handleClickEdit() {
-    navigate("/edit-profile");
+    navigate("/edit-profile", { state: { id: state.id } });
   }
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleOpenModal = () => {
     // setIsModalVisible(true);
-    axios.delete('http://localhost:8000/' + 'api/2/delete', {
+    axios.delete('http://127.0.0.1:8000/' + 'api/2/delete', {
       data: {
         id: state.id
       }
     })
       .then((response) => {
+        notify(response.data.message, 'success')
         navigate('/')
       })
   };
