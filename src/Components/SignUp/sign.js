@@ -16,9 +16,9 @@ const Signup = () => {
   const [hidden, setHidden] = useState(true);
   const [eyeHidden, setEyeHidden] = useState(true);
 
-  function handleClickLogin() {
-    if (user && pass && confirm && pass === confirm) {
-      axios.post('http://localhost:8000/' + 'api/2/register', {
+  const handleClickLogin = async () => {
+    if (user && pass && confirm && pass === confirm && confirm.length >= 8) {
+      await axios.post('http://127.0.0.1:8000/' + 'api/2/register', {
         username: user,
         password: confirm
       })
@@ -32,6 +32,9 @@ const Signup = () => {
             notify(response.data.message, 'warning')
           }
         })
+    }
+    else {
+      notify("Missing Input or password length is less than 8!", 'warning')
     }
 
   }

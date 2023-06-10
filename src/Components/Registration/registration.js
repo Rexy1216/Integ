@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { notify } from "../globalfunction";
 
-const Registration = ({ navigation, route }) => {
+const Login = ({ navigation, route }) => {
   const [hidden, setHidden] = useState(true);
   const [check, setCheck] = useState(true);
 
@@ -21,20 +21,29 @@ const Registration = ({ navigation, route }) => {
     navigate("/signup");
   }
 
-  function handleClickLogin() {
-    axios.post('http://localhost:8000/' + 'api/2/login', {
-      username: user,
-      password: pass
-    })
-      .then((response) => {
-        if (response.data.flag === 1) {
-          notify(response.data.message, 'success')
-          navigate("/profile", { state: { id: response.data.id } });
-        }
-        else {
-          notify(response.data.message, 'warning')
-        }
+  const handleClickLogin = async () => {
+    if (user && pass) {
+      await axios.post('http://127.0.0.1:8000/' + 'api/2/login', {
+        username: user,
+        password: pass
       })
+        .then((response) => {
+          if (response.data.flag === 1) {
+            notify(response.data.message, 'success')
+            navigate("/profile", { state: { id: response.data.id } });
+          }
+          else {
+            notify(response.data.message, 'warning')
+          }
+        })
+        .catch((e) => {
+          notify('Server is not available!', 'warning')
+        })
+    }
+    else {
+      notify('Missing Inputs!', 'warning')
+    }
+
   }
 
   return (
@@ -226,4 +235,4 @@ const Registration = ({ navigation, route }) => {
     </div>
   );
 };
-export default Registration;
+export default Login;

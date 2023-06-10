@@ -14,7 +14,7 @@ const EditProfile = () => {
   const [user, setUser] = useState('')
   const [pass, setPass] = useState('')
   const [confirm, setConfirm] = useState('')
-
+  
 
   const navigate = useNavigate();
 
@@ -23,12 +23,12 @@ const EditProfile = () => {
   }
 
   useEffect(() => {
-    console.log(state.id)
+    setUser(state.username)
   }, [])
 
-  function handleClickSave() {
-    if (user && pass && confirm && pass === confirm) {
-      axios.put('http://localhost:8000/' + 'api/2/update', {
+  const handleClickSave = async () => {
+    if (user && pass && confirm && pass === confirm && confirm.length >= 8) {
+      await axios.put('http://127.0.0.1:8000/' + 'api/2/update', {
         id: state.id,
         username: user,
         password: confirm
@@ -45,6 +45,9 @@ const EditProfile = () => {
         .catch(() => {
           notify("Server is not available!", 'warning')
         })
+    }
+    else {
+      notify("Missing Input or password length is less than 8!", 'warning')
     }
   }
 

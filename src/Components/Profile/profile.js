@@ -28,27 +28,18 @@ const Profile = () => {
   }
 
   function handleClickEdit() {
-    navigate("/edit-profile", { state: { id: state.id } });
+    navigate("/edit-profile", { state: { id: state.id, username: uname } });
   }
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const handleOpenModal = () => {
-    // setIsModalVisible(true);
-    axios.delete('http://127.0.0.1:8000/' + 'api/2/delete', {
-      data: {
-        id: state.id
-      }
-    })
-      .then((response) => {
-        notify(response.data.message, 'success')
-        navigate('/')
-      })
+  const handleOpenModal = async () => {
+    setIsModalVisible(true);
   };
 
   return (
     <>
-      {/* {isModalVisible && <Delete setAddItem={setIsModalVisible}/>} */}
+      {isModalVisible && <Delete setModal={setIsModalVisible} id={state.id}/>}
 
       <div>
         <div className="top">
